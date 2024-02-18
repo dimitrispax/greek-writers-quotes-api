@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from utils import get_shuffled_quotes, get_randomized_quote
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/')
+@app.route("/")
 def root():
     return 'You have reached the root route, try /api/quotes or /api/quote.'
 
