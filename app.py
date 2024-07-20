@@ -4,6 +4,11 @@ from utils import get_shuffled_quotes, get_randomized_quote
 
 app = Flask(__name__)
 CORS(app)
+cors = CORS(app, resource={
+    r"/*":{
+        "origins":"*"
+    }
+})
 
 @app.route("/")
 def root():
