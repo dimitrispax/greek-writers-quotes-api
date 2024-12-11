@@ -18,12 +18,14 @@ def root():
 @app.route('/api/quotes')
 def get_quotes():
     shuffled_quotes = get_shuffled_quotes()
+
     return jsonify(shuffled_quotes), 200
 
 # The route to get a random quote.
 @app.route('/api/quote')
 def get_quote():
     random_quote = get_randomized_quote()
+    
     return jsonify(random_quote), 200
 
 @app.errorhandler(404)

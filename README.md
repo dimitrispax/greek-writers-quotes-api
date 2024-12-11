@@ -56,6 +56,5 @@ GET {URL}/api/quotes
 
 # Running the app locally
 1. Ensure that you have ```python3``` installed with ```python3 -V``` command.
-2. ```pip3 install -U flask```
-3. ```pip3 install -U flask-cors```
+2. ```pip3 install -r ./requirements.txt```
 4.  ```flask --app app run```
