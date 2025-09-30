@@ -1,36 +1,23 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from flask_cors import CORS
-from utils import get_shuffled_quotes, get_randomized_quote
+from routes import api_bp
 
-app = Flask(__name__)
-CORS(app)
-cors = CORS(app, resource={
-    r"/*":{
-        "origins":"*"
-    }
-})
-
-@app.route("/")
-def root():
-    return 'You have reached the root route, try /api/quotes or /api/quote.'
-
-# The route to get all the quotes shuffled.
-@app.route('/api/quotes')
-def get_quotes():
-    shuffled_quotes = get_shuffled_quotes()
-
-    return jsonify(shuffled_quotes), 200
-
-# The route to get a random quote.
-@app.route('/api/quote')
-def get_quote():
-    random_quote = get_randomized_quote()
+def create_app(): 
+    app = Flask(__name__)
     
-    return jsonify(random_quote), 200
+    # Configure CORS to allow all origins
+    CORS(app, resources={
+        r"/*": {
+            "origins": "*"
+        }
+    })
+    
+    # Register blueprints
+    app.register_blueprint(api_bp)
+    
+    return app
 
-@app.errorhandler(404)
-def not_found_handler(e):
-    return 'Not Found.', 404
+app = create_app()
     
 if __name__ == '__main__':
     app.run(debug=False)
